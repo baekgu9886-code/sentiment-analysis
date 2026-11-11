@@ -1,0 +1,25 @@
+{
+  "name": "moment-sentiment",
+  "version": "1.0.0",
+  "description": "글 속에 담긴 감정의 방향을 차분하고 직관적으로 읽어주는 AI 감성 분석 서비스",
+  "type": "module",
+  "main": "api/analyze.js",
+  "scripts": {
+    "start": "node --env-file=.env dev-server.js",
+    "dev": "vercel dev",
+    "build": "echo 'No build step required for static site'"
+  },
+  "keywords": [
+    "sentiment-analysis",
+    "ai",
+    "openai",
+    "supabase",
+    "vanilla-js"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "openai": "^4.86.1"
+  }
+}
