@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
     <meta charset="UTF-8">
     <!-- 모바일 화면 반응형 뷰포트 설정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MOMENT - 감성 분석 서비스</title>
     <meta name="description" content="글 속에 담긴 감정의 방향을 차분하고 직관적으로 읽어주는 AI 감성 분석 서비스">
-
+    
     <!-- 스타일시트 연결 -->
     <link rel="stylesheet" href="./css/styles.css">
-
+    
     <!-- 웹 폰트 (Pretendard: 가독성이 뛰어난 한글/영문 폰트) -->
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 </head>
-
 <body class="mode-hacking">
     <!-- 3D 디지털 라이브 해킹 배경화면 캔버스 레이어 -->
     <canvas id="cyberCanvas" class="cyber-canvas" aria-hidden="true"></canvas>
@@ -26,23 +23,31 @@
             <!-- 임시 텍스트 로고 -->
             <a href="#" class="logo" aria-label="MOMENT 홈으로 이동">MOMENT</a>
 
-            <!-- 상단 메뉴 및 테마 모드 스위처 -->
+            <!-- 상단 메뉴, 테마 스위처, 언어 스위처 영역 -->
             <div class="header-right">
-                <!-- 심플 모드 / 해킹 모드 전환 버튼 -->
+                <!-- 한글 / 영문 다국어 스위처 -->
+                <div class="lang-switch" role="group" aria-label="언어 선택 (Language Switcher)">
+                    <button type="button" class="lang-btn active" id="langKoBtn" aria-pressed="true" title="한국어">
+                        🇰🇷 KO
+                    </button>
+                    <button type="button" class="lang-btn" id="langEnBtn" aria-pressed="false" title="English">
+                        🇺🇸 EN
+                    </button>
+                </div>
+
+                <!-- 심플 모드 / 해킹 모드 전환 스위처 -->
                 <div class="theme-switch" role="group" aria-label="화면 테마 모드 선택">
-                    <button type="button" class="theme-btn" id="simpleModeBtn" aria-pressed="false"
-                        title="차분한 딥 버건디 감성 화면">
+                    <button type="button" class="theme-btn" id="simpleModeBtn" aria-pressed="false" title="차분한 딥 버건디 감성 화면" data-i18n="theme.simple">
                         🌿 심플 모드
                     </button>
-                    <button type="button" class="theme-btn active" id="hackModeBtn" aria-pressed="true"
-                        title="화려한 3D 디지털 네온 해킹 화면">
+                    <button type="button" class="theme-btn active" id="hackModeBtn" aria-pressed="true" title="화려한 3D 디지털 네온 해킹 화면" data-i18n="theme.hacking">
                         ⚡ 해킹 모드
                     </button>
                 </div>
 
                 <nav class="nav" aria-label="메인 내비게이션">
-                    <a href="#about" class="nav-link">서비스 소개</a>
-                    <a href="#analysis-section" class="nav-link nav-link-cta">분석하기</a>
+                    <a href="#about" class="nav-link" data-i18n="nav.about">서비스 소개</a>
+                    <a href="#analysis-section" class="nav-link nav-link-cta" data-i18n="nav.analyze">분석하기</a>
                 </nav>
             </div>
         </div>
@@ -55,17 +60,17 @@
             <div class="container hero-container">
                 <!-- 좌측 메인 텍스트 및 CTA -->
                 <div class="hero-content">
-                    <span class="hero-badge">WORDS HAVE FEELINGS</span>
-                    <h1 class="hero-title">
+                    <span class="hero-badge" data-i18n="hero.badge">WORDS HAVE FEELINGS</span>
+                    <h1 class="hero-title" id="heroTitle">
                         문장 속에 담긴<br>
                         <span class="highlight-text">감정을 읽다</span>
                     </h1>
-                    <p class="hero-description">
-                        짧은 문장부터 긴 이야기까지, AI가 글의 감성 흐름을 차분하고 직관적으로 분석해 드립니다.
+                    <p class="hero-description" data-i18n="hero.desc">
+                        짧은 문장부터 긴 이야기까지, AI가 글의 감성 흐름을 차분하고 직관적으로 분석해 드립니다. 
                         당신의 문장은 오늘 어떤 온도를 품고 있나요?
                     </p>
                     <div class="hero-actions">
-                        <a href="#analysis-section" class="btn btn-primary">감성 분석 시작하기</a>
+                        <a href="#analysis-section" class="btn btn-primary" data-i18n="hero.cta">감성 분석 시작하기</a>
                     </div>
                 </div>
 
@@ -73,23 +78,23 @@
                 <div class="hero-visual" aria-hidden="true">
                     <div class="keyword-card keyword-positive">
                         <div class="keyword-icon">✦</div>
-                        <div class="keyword-title">긍정 (Positive)</div>
-                        <div class="keyword-desc">기쁨, 설렘, 감사와 만족의 순간</div>
+                        <div class="keyword-title" data-i18n="card.posTitle">긍정 (Positive)</div>
+                        <div class="keyword-desc" data-i18n="card.posDesc">기쁨, 설렘, 감사와 만족의 순간</div>
                     </div>
                     <div class="keyword-card keyword-neutral">
                         <div class="keyword-icon">✦</div>
-                        <div class="keyword-title">중립 (Neutral)</div>
-                        <div class="keyword-desc">담담하고 객관적인 사실과 균형</div>
+                        <div class="keyword-title" data-i18n="card.neuTitle">중립 (Neutral)</div>
+                        <div class="keyword-desc" data-i18n="card.neuDesc">담담하고 객관적인 사실과 균형</div>
                     </div>
                     <div class="keyword-card keyword-negative">
                         <div class="keyword-icon">✦</div>
-                        <div class="keyword-title">부정 (Negative)</div>
-                        <div class="keyword-desc">슬픔, 아쉬움, 위로가 필요한 이야기</div>
+                        <div class="keyword-title" data-i18n="card.negTitle">부정 (Negative)</div>
+                        <div class="keyword-desc" data-i18n="card.negDesc">슬픔, 아쉬움, 위로가 필요한 이야기</div>
                     </div>
                     <div class="keyword-card keyword-reason">
                         <div class="keyword-icon">✦</div>
-                        <div class="keyword-title">감정의 이유</div>
-                        <div class="keyword-desc">문맥과 어휘에 기반한 명확한 분석 근거</div>
+                        <div class="keyword-title" data-i18n="card.reaTitle">감정의 이유</div>
+                        <div class="keyword-desc" data-i18n="card.reaDesc">문맥과 어휘에 기반한 명확한 분석 근거</div>
                     </div>
                 </div>
             </div>
@@ -99,8 +104,8 @@
         <section class="analysis-section" id="analysis-section">
             <div class="container analysis-container">
                 <div class="section-header">
-                    <h2 class="section-title">오늘의 문장을 분석해 보세요</h2>
-                    <p class="section-subtitle">분석하고 싶은 텍스트를 입력창에 자유롭게 남겨주세요. (최대 2,000자)</p>
+                    <h2 class="section-title" data-i18n="form.title">오늘의 문장을 분석해 보세요</h2>
+                    <p class="section-subtitle" data-i18n="form.subtitle">분석하고 싶은 텍스트를 입력창에 자유롭게 남겨주세요. (최대 2,000자)</p>
                 </div>
 
                 <!-- 입력 카드 -->
@@ -108,12 +113,18 @@
                     <form id="sentimentForm" class="analysis-form" novalidate>
                         <div class="form-group">
                             <label for="inputText" class="form-label">
-                                <span>분석할 텍스트</span>
+                                <span data-i18n="form.inputLabel">분석할 텍스트</span>
                                 <span class="char-count" id="charCount" aria-live="polite">0 / 2,000</span>
                             </label>
-                            <textarea id="inputText" name="text" class="form-textarea" rows="6"
+                            <textarea 
+                                id="inputText" 
+                                name="text" 
+                                class="form-textarea" 
+                                rows="6" 
                                 placeholder="예: 오늘 아침 커피 향이 참 좋아서 기분 좋게 하루를 시작했어요. 하지만 오후에는 할 일이 너무 많아서 조금 지쳤네요."
-                                maxlength="2000" required></textarea>
+                                maxlength="2000"
+                                required
+                            ></textarea>
                             <!-- 입력 필드 에러 메시지 -->
                             <div class="field-error" id="inputError" role="alert" aria-live="assertive"></div>
                         </div>
@@ -123,11 +134,11 @@
                             <label class="checkbox-label" for="saveConsent">
                                 <input type="checkbox" id="saveConsent" name="saveConsent" class="form-checkbox">
                                 <span class="checkbox-custom"></span>
-                                <span class="checkbox-text">
+                                <span class="checkbox-text" data-i18n="form.consentText">
                                     [선택] 분석 결과 개선 및 통계를 위해 입력한 문장과 분석 결과 저장을 허용합니다.
                                 </span>
                             </label>
-                            <p class="consent-info">
+                            <p class="consent-info" data-i18n="form.consentInfo">
                                 * 동의하지 않아도 감성 분석은 제한 없이 자유롭게 이용하실 수 있습니다.
                             </p>
                         </div>
@@ -135,7 +146,7 @@
                         <!-- 제출 버튼 -->
                         <div class="form-actions">
                             <button type="submit" id="submitBtn" class="btn btn-primary btn-block">
-                                <span class="btn-text">감성 분석하기</span>
+                                <span class="btn-text" data-i18n="form.submitBtn">감성 분석하기</span>
                                 <span class="btn-spinner" aria-hidden="true"></span>
                             </button>
                         </div>
@@ -145,22 +156,20 @@
                     <div id="alertBox" class="alert-box" role="alert" aria-live="assertive" hidden>
                         <span class="alert-icon" aria-hidden="true">⚠️</span>
                         <div class="alert-content">
-                            <strong class="alert-title">오류가 발생했습니다</strong>
+                            <strong class="alert-title" data-i18n="alert.title">오류가 발생했습니다</strong>
                             <p class="alert-message" id="alertMessage">입력 내용을 확인해 주세요.</p>
                         </div>
                         <div class="alert-actions">
-                            <button type="button" class="alert-retry-btn" id="retryBtn">다시 시도</button>
-                            <button type="button" class="alert-close-btn" id="closeAlertBtn"
-                                aria-label="오류창 닫기">✕</button>
+                            <button type="button" class="alert-retry-btn" id="retryBtn" data-i18n="alert.retry">다시 시도</button>
+                            <button type="button" class="alert-close-btn" id="closeAlertBtn" aria-label="오류창 닫기">✕</button>
                         </div>
                     </div>
 
                     <!-- 결과 카드 영역 (초기 상태에는 hidden) -->
                     <div id="resultCard" class="result-card" aria-live="polite" hidden>
                         <div class="result-header">
-                            <span class="result-tag">분석 결과</span>
+                            <span class="result-tag" data-i18n="result.tag">분석 결과</span>
                             <div class="result-sentiment-badge" id="sentimentBadge">
-                                <!-- JS에서 안전하게 텍스트 삽입 -->
                                 <span id="sentimentLabel">긍정</span>
                             </div>
                         </div>
@@ -168,21 +177,20 @@
                         <!-- 신뢰도 표시 바 -->
                         <div class="confidence-container">
                             <div class="confidence-header">
-                                <span class="confidence-title">판정 신뢰도</span>
+                                <span class="confidence-title" data-i18n="result.confTitle">판정 신뢰도</span>
                                 <span class="confidence-percentage" id="confidenceText">85%</span>
                             </div>
-                            <div class="progress-bar-bg" role="progressbar" aria-valuenow="85" aria-valuemin="0"
-                                aria-valuemax="100" id="confidenceBarContainer">
+                            <div class="progress-bar-bg" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" id="confidenceBarContainer">
                                 <div class="progress-bar-fill" id="confidenceFill" style="width: 85%;"></div>
                             </div>
-                            <p class="confidence-caption">
+                            <p class="confidence-caption" data-i18n="result.confCaption">
                                 * 표시된 신뢰도는 AI 모델의 자체 추정치이며, 통계적 보정치가 아니므로 문맥에 따라 차이가 있을 수 있습니다.
                             </p>
                         </div>
 
                         <!-- 분석 이유 안내 -->
                         <div class="reason-container">
-                            <h3 class="reason-title">분석 이유</h3>
+                            <h3 class="reason-title" data-i18n="result.reasonTitle">분석 이유</h3>
                             <p class="reason-text" id="reasonText">
                                 입력 문장에 긍정적인 감정을 드러내는 단어가 주로 사용되었습니다.
                             </p>
@@ -192,14 +200,14 @@
                         <div class="result-actions">
                             <button type="button" class="btn-copy-result" id="copyResultBtn">
                                 <span class="copy-icon">📋</span>
-                                <span id="copyBtnText">분석 결과 복사하기</span>
+                                <span id="copyBtnText" data-i18n="result.copyBtn">분석 결과 복사하기</span>
                             </button>
                         </div>
 
                         <!-- 데이터 저장 상태 안내 (선택 동의 시 결과) -->
                         <div class="save-status-info" id="saveStatusInfo" hidden>
                             <span class="save-icon">ℹ️</span>
-                            <span id="saveStatusText">분석 기록이 안전하게 저장되었습니다.</span>
+                            <span id="saveStatusText" data-i18n="result.savedText">분석 기록이 안전하게 저장되었습니다.</span>
                         </div>
                     </div>
                 </div>
@@ -211,7 +219,7 @@
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-notice">
-                <p>본 서비스의 AI 감성 분석 결과는 문맥 이해를 돕기 위한 참고 정보이며, 심리 진단이나 전문적 의학 소견을 대체할 수 없습니다.</p>
+                <p data-i18n="footer.notice">본 서비스의 AI 감성 분석 결과는 문맥 이해를 돕기 위한 참고 정보이며, 심리 진단이나 전문적 의학 소견을 대체할 수 없습니다.</p>
             </div>
             <div class="footer-copyright">
                 <p>&copy; 2026 MOMENT. All rights reserved.</p>
@@ -229,30 +237,23 @@
         <!-- 춤추는 케로로 캐릭터 (순수 SVG 그래픽) -->
         <button type="button" class="keroro-btn" id="keroroBtn" aria-label="케로로 클릭하여 응원 대사 듣기">
             <div class="keroro-dance-wrapper">
-                <svg class="keroro-svg" viewBox="0 0 160 190" width="120" height="142"
-                    xmlns="http://www.w3.org/2000/svg">
+                <svg class="keroro-svg" viewBox="0 0 160 190" width="120" height="142" xmlns="http://www.w3.org/2000/svg">
                     <!-- 그림자 -->
                     <ellipse cx="80" cy="180" rx="42" ry="7" fill="rgba(0,0,0,0.3)" class="keroro-shadow" />
 
                     <!-- 다리 (좌/우) -->
                     <g class="keroro-legs">
-                        <ellipse cx="62" cy="168" rx="12" ry="10" fill="#3fb54f" stroke="#256b30" stroke-width="2"
-                            class="keroro-leg-left" />
-                        <ellipse cx="98" cy="168" rx="12" ry="10" fill="#3fb54f" stroke="#256b30" stroke-width="2"
-                            class="keroro-leg-right" />
+                        <ellipse cx="62" cy="168" rx="12" ry="10" fill="#3fb54f" stroke="#256b30" stroke-width="2" class="keroro-leg-left" />
+                        <ellipse cx="98" cy="168" rx="12" ry="10" fill="#3fb54f" stroke="#256b30" stroke-width="2" class="keroro-leg-right" />
                     </g>
 
                     <!-- 양 팔 (신나게 흔들리는 모션 적용) -->
                     <g class="keroro-arms">
-                        <path d="M 45 125 Q 22 105 32 90 Q 42 85 48 115 Z" fill="#3fb54f" stroke="#256b30"
-                            stroke-width="2" class="keroro-arm-left" />
-                        <circle cx="30" cy="88" r="9" fill="#3fb54f" stroke="#256b30" stroke-width="2"
-                            class="keroro-hand-left" />
+                        <path d="M 45 125 Q 22 105 32 90 Q 42 85 48 115 Z" fill="#3fb54f" stroke="#256b30" stroke-width="2" class="keroro-arm-left" />
+                        <circle cx="30" cy="88" r="9" fill="#3fb54f" stroke="#256b30" stroke-width="2" class="keroro-hand-left" />
 
-                        <path d="M 115 125 Q 138 105 128 90 Q 118 85 112 115 Z" fill="#3fb54f" stroke="#256b30"
-                            stroke-width="2" class="keroro-arm-right" />
-                        <circle cx="130" cy="88" r="9" fill="#3fb54f" stroke="#256b30" stroke-width="2"
-                            class="keroro-hand-right" />
+                        <path d="M 115 125 Q 138 105 128 90 Q 118 85 112 115 Z" fill="#3fb54f" stroke="#256b30" stroke-width="2" class="keroro-arm-right" />
+                        <circle cx="130" cy="88" r="9" fill="#3fb54f" stroke="#256b30" stroke-width="2" class="keroro-hand-right" />
                     </g>
 
                     <!-- 몸통 (초록 몸통 + 흰색 배 + 노란 별 마크) -->
@@ -261,8 +262,7 @@
                         <!-- 흰색 배 -->
                         <ellipse cx="80" cy="140" rx="22" ry="22" fill="#ffffff" stroke="#e0e0e0" stroke-width="1.5" />
                         <!-- 배 위의 별 마크 -->
-                        <polygon points="80,126 84,136 94,136 86,143 89,153 80,147 71,153 74,143 66,136 76,136"
-                            fill="#ffd13b" stroke="#e6a800" stroke-width="1" />
+                        <polygon points="80,126 84,136 94,136 86,143 89,153 80,147 71,153 74,143 66,136 76,136" fill="#ffd13b" stroke="#e6a800" stroke-width="1" />
                     </g>
 
                     <!-- 머리 전체 그룹 (둠칫둠칫 까딱거림) -->
@@ -271,23 +271,18 @@
                         <circle cx="80" cy="72" r="46" fill="#3fb54f" stroke="#256b30" stroke-width="2.5" />
 
                         <!-- 노란색 모자 (케로로 트레이드마크 헬멧) -->
-                        <path d="M 36 68 Q 80 18 124 68 Q 120 40 80 34 Q 40 40 36 68 Z" fill="#ffd13b" stroke="#e6a800"
-                            stroke-width="2" />
+                        <path d="M 36 68 Q 80 18 124 68 Q 120 40 80 34 Q 40 40 36 68 Z" fill="#ffd13b" stroke="#e6a800" stroke-width="2" />
                         <!-- 모자 플랩(귀마개 부분) -->
-                        <path d="M 36 64 C 28 65 24 82 32 94 C 38 98 42 86 40 70 Z" fill="#ffd13b" stroke="#e6a800"
-                            stroke-width="1.8" />
-                        <path d="M 124 64 C 132 65 136 82 128 94 C 122 98 118 86 120 70 Z" fill="#ffd13b"
-                            stroke="#e6a800" stroke-width="1.8" />
+                        <path d="M 36 64 C 28 65 24 82 32 94 C 38 98 42 86 40 70 Z" fill="#ffd13b" stroke="#e6a800" stroke-width="1.8" />
+                        <path d="M 124 64 C 132 65 136 82 128 94 C 122 98 118 86 120 70 Z" fill="#ffd13b" stroke="#e6a800" stroke-width="1.8" />
 
                         <!-- 모자 가운데 빨간 별 (시그니처) -->
-                        <polygon points="80,38 83,46 92,46 85,52 87,60 80,55 73,60 75,52 68,46 77,46" fill="#e63946"
-                            stroke="#b01b27" stroke-width="1" />
+                        <polygon points="80,38 83,46 92,46 85,52 87,60 80,55 73,60 75,52 68,46 77,46" fill="#e63946" stroke="#b01b27" stroke-width="1" />
 
                         <!-- 흰색 주둥이/입 영역 -->
                         <ellipse cx="80" cy="85" rx="30" ry="20" fill="#ffffff" stroke="#256b30" stroke-width="1.8" />
                         <!-- 귀여운 미소 입 모양 -->
-                        <path d="M 72 87 Q 80 96 88 87" fill="none" stroke="#256b30" stroke-width="2"
-                            stroke-linecap="round" />
+                        <path d="M 72 87 Q 80 96 88 87" fill="none" stroke="#256b30" stroke-width="2" stroke-linecap="round" />
                         <!-- 볼터치 (핑크) -->
                         <ellipse cx="56" cy="82" rx="5" ry="3" fill="#ff8fba" opacity="0.6" />
                         <ellipse cx="104" cy="82" rx="5" ry="3" fill="#ff8fba" opacity="0.6" />
@@ -315,5 +310,4 @@
     <!-- 프론트엔드 자바스크립트 -->
     <script src="./js/app.js"></script>
 </body>
-
 </html>

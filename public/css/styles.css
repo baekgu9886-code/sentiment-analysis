@@ -1,12 +1,11 @@
 /* ==============================================================================
    MOMENT 감성 분석 서비스 - 메인 스타일시트
    파일명: public/css/styles.css
-   특징: 심플 모드(차분한 딥 버건디) vs 해킹 모드(강렬한 3D 네온) 듀얼 테마 지원
+   특징: 심플 모드 vs 해킹 모드 듀얼 테마 + 한/영 다국어 스위처 지원
    ============================================================================== */
 
 /* 1. 디자인 토큰 (CSS 변수 정의) */
 :root {
-    /* 공통 폰트 및 라운딩 */
     --radius-card: 22px;
     --radius-btn: 14px;
     --radius-input: 14px;
@@ -164,7 +163,7 @@ button, input, textarea {
     outline-offset: 3px;
 }
 
-/* 3. 상단 내비게이션 바 & 테마 스위처 */
+/* 3. 상단 내비게이션 바, 테마 스위처, 언어 스위처 */
 .header {
     position: sticky;
     top: 0;
@@ -187,7 +186,7 @@ button, input, textarea {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
 }
 
 .logo {
@@ -206,7 +205,45 @@ button, input, textarea {
     font-size: 0.95rem;
 }
 
-/* 모드 전환 스위치 (Segmented Control) */
+/* 언어 스위처 (KO / EN) */
+.lang-switch {
+    display: flex;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--color-panel-border);
+    border-radius: 20px;
+    padding: 3px;
+    gap: 2px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-muted);
+    font-size: 0.78rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.lang-btn:hover {
+    color: #fff;
+}
+
+.lang-btn.active {
+    background: var(--color-cyber-cyan);
+    color: #000;
+    box-shadow: 0 0 10px var(--color-cyber-cyan-glow);
+}
+
+body.mode-simple .lang-btn.active {
+    background: var(--color-accent);
+    color: #fff;
+    box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+/* 모드 전환 스위치 (심플 / 해킹) */
 .theme-switch {
     display: flex;
     background: rgba(0, 0, 0, 0.45);
@@ -251,7 +288,7 @@ body.mode-simple .theme-btn.active {
 .nav {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 
 .nav-link {
@@ -1057,16 +1094,36 @@ body.mode-simple .theme-btn.active {
     .header-right {
         width: 100%;
         justify-content: space-between;
-        gap: 12px;
+        gap: 8px;
+        flex-wrap: wrap;
     }
 
-    .theme-switch {
+    .lang-switch, .theme-switch {
         padding: 2px;
     }
 
+    .lang-btn {
+        font-size: 0.72rem;
+        padding: 4px 8px;
+    }
+
     .theme-btn {
-        font-size: 0.75rem;
-        padding: 5px 10px;
+        font-size: 0.72rem;
+        padding: 5px 8px;
+    }
+
+    .nav {
+        gap: 10px;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 6px 8px;
+    }
+
+    .nav-link-cta {
+        padding: 6px 14px;
+        font-size: 0.85rem;
     }
 
     .hero-section {
